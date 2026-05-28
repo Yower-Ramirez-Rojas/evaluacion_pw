@@ -1,0 +1,140 @@
+
+:root {
+    --bg-principal: #0b0f19;       
+    --bg-tarjeta: #131a26;         
+    --celeste-neon: #00d2ff;       
+    --celeste-hover: #0099bc;      
+    --texto-blanco: #f3f4f6;       
+    --texto-mutado: #9ca3af;       
+    --borde-celeste: rgba(0, 210, 255, 0.2);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-principal);
+    color: var(--texto-blanco);
+    max-width: 550px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--texto-blanco);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--celeste-neon);
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.card {
+    background-color: var(--bg-tarjeta);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--borde-celeste);
+}
+
+h2 {
+    color: var(--celeste-neon);
+    margin-top: 0;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* --- CAMPOS DEL FORMULARIO --- */
+label {
+    display: block;
+    font-weight: 600;
+    margin-top: 18px;
+    color: var(--texto-blanco);
+    font-size: 0.9rem;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    background-color: var(--bg-principal);
+    border: 1px solid var(--borde-celeste);
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: var(--texto-blanco);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--celeste-neon);
+    box-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+}
+
+textarea {
+    height: 110px;
+    resize: none;
+}
+
+/* --- BOTÓN CELESTE INTERACTIVO --- */
+button {
+    background-color: var(--celeste-neon);
+    color: #0b0f19;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: var(--celeste-hover);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+}
+
+/* --- ALERTA FLOTANTE --- */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: -350px;
+    background-color: #10b981;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 9999;
+    max-width: 300px;
+}
+
+.toast.show {
+    right: 20px;
+}
+
+.toast-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.toast-body {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
