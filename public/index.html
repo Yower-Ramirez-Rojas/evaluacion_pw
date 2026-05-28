@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Soporte - Santo Tomás</title>
+    
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <h1>Módulo de Soporte Técnico</h1>
+    <div class="subtitle">Santo Tomás - Backend Local</div>
+
+    <div class="card">
+        <h2>Ingresar Nuevo Requerimiento</h2>
+        <form id="ticketForm">
+            <label for="titulo">Título / Asunto:</label>
+            <input type="text" id="titulo" placeholder="Ej: Error de compilación en el módulo" required>
+
+            <label for="descripcion">Descripción del Problema:</label>
+            <textarea id="descripcion" placeholder="Detalla de forma breve la falla técnica..." required></textarea>
+
+            <label for="prioridad">Prioridad del Incidente:</label>
+            <select id="prioridad">
+                <option value="Baja">Baja</option>
+                <option value="Media">Media</option>
+                <option value="Alta">Alta</option>
+            </select>
+
+            <button type="submit">Enviar al Servidor</button>
+        </form>
+    </div>
+
+    <div id="successToast" class="toast">
+        <div class="toast-title">✓ Estado HTTP: 201 (Creado)</div>
+        <div id="toastMensaje" class="toast-body">El ticket se registró correctamente en la base de datos.</div>
+    </div>
+
+    <script>
+        document.getElementById('ticketForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const toast = document.getElementById('successToast');
+            const toastMsg = document.getElementById('toastMensaje');
+
+            const datosFormulario = {
+                titulo: document.getElementById('titulo').value,
+                descripcion: document.getElementById('descripcion').value,
+                prioridad: document.getElementById('prioridad').value
+            };
+
+            try {
+                const response = await fetch('/api/tickets', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosFormulario)
+                });
+
+                const resultado = await response.json();
+
+                if (response.status === 201) {
+                    toastMsg.innerText = `ID Asignado: ${resultado.id_asignado || 'Autogenerado'} - ${resultado.titulo}`;
+                    toast.classList.add('show');
+
+                    document.getElementById('ticketForm').reset();
+
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 4000);
+                } else {
+                    alert('Ocurrió un problema en el servidor: ' + resultado.mensaje);
+                }
+
+            } catch (error) {
+                alert('Error crítico de red al conectar al backend: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
