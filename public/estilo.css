@@ -35,7 +35,7 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* --- CONTENEDOR PRINCIPAL --- */
+
 .card {
     background-color: var(--bg-tarjeta);
     padding: 30px;
@@ -52,7 +52,7 @@ h2 {
     font-weight: 500;
 }
 
-/* --- CAMPOS DEL FORMULARIO --- */
+
 label {
     display: block;
     font-weight: 600;
@@ -85,7 +85,7 @@ textarea {
     resize: none;
 }
 
-/* --- BOTÓN CELESTE INTERACTIVO --- */
+
 button {
     background-color: var(--celeste-neon);
     color: #0b0f19;
@@ -107,7 +107,7 @@ button:hover {
     box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
 }
 
-/* --- ALERTA FLOTANTE --- */
+
 .toast {
     position: fixed;
     top: 20px;
